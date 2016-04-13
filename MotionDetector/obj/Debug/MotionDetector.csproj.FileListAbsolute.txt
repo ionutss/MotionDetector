@@ -1,0 +1,17 @@
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\bin\Debug\MotionDetector.dll
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\bin\Debug\MotionDetector.pdb
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\bin\Debug\MotionDetector.MotionDetector.apk
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\bin\Debug\MotionDetector.MotionDetector-Signed.apk
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\MotionDetector.csprojResolveAssemblyReference.cache
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\MotionDetector.dll
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\MotionDetector.pdb
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\android\bin\MotionDetector.MotionDetector.apk
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\res\layout\main.xml
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\res\values\strings.xml
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\res\drawable\icon.png
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\R.cs.flag
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\uploadflags.txt
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\bin\Debug\Newtonsoft.Json.dll
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\bin\Debug\Newtonsoft.Json.xml
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\MotionDetector.dll.mdb
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\bin\Debug\MotionDetector.dll.mdb

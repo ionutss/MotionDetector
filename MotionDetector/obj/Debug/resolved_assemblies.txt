@@ -1,0 +1,10 @@
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\assemblies\MotionDetector.dll
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\assemblies\Mono.Android.dll
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\assemblies\mscorlib.dll
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\assemblies\Newtonsoft.Json.dll
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\assemblies\System.Core.dll
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\assemblies\System.dll
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\assemblies\System.Xml.dll
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\assemblies\System.Xml.Linq.dll
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\assemblies\System.Runtime.Serialization.dll
+c:\users\ionut\documents\visual studio 2015\Projects\MotionDetector\MotionDetector\obj\Debug\assemblies\System.ServiceModel.Internals.dll
