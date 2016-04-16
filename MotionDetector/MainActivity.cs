@@ -23,6 +23,7 @@ namespace MotionDetector
         string AppPath = System.IO.Path.Combine(path.ToString(), "awala3.txt");
         StreamWriter sw = null;
         JsonWriter writer = null;
+        Scanner scanner = Scanner.Instance;
 
 
         public void OnAccuracyChanged(Sensor sensor, [GeneratedEnum] SensorStatus accuracy)
@@ -32,11 +33,14 @@ namespace MotionDetector
 
         public void OnSensorChanged(SensorEvent e)
         {
-            Console.WriteLine(e.Values[0]);
+            //Console.WriteLine(e.Values[0]);
             lock (_syncLock)
             {
                 _sensorTextView.Text = string.Format("x={0:f}, y={1:f}, z={2:f}", e.Values[0] / 10, e.Values[1] / 10, e.Values[2] / 10);
-                writer.WriteValue(e.Values[0] / 10);
+                //writer.WriteValue(e.Values[0] / 10);
+
+                scanner.Write(e.Values[0] / 10, e.Values[1] / 10, e.Values[2] / 10);
+                scanner.Execute();
             }
         }
 
@@ -49,13 +53,15 @@ namespace MotionDetector
 
             fs = File.Create(AppPath);
             sw = new StreamWriter(fs);
-            writer = new JsonTextWriter(sw);
-            writer.WriteStartObject();
-            writer.WritePropertyName("acc_x");
-            writer.WriteStartArray();
+            sw.Write("IROD");
+            sw.Close();
+            //writer = new JsonTextWriter(sw);
+            //writer.WriteStartObject();
+            //writer.WritePropertyName("acc_x");
+            //writer.WriteStartArray();
 
+            scanner.Execute();
 
-            Console.WriteLine("pula mea");
         }
 
         protected override void OnResume()
@@ -64,6 +70,7 @@ namespace MotionDetector
             _sensorManager.RegisterListener(this,
                                             _sensorManager.GetDefaultSensor(SensorType.Accelerometer),
                                             SensorDelay.Fastest);
+
             Console.WriteLine("fuck");
         }
 
@@ -78,8 +85,8 @@ namespace MotionDetector
         protected override void OnStop()
         {
             base.OnStop();
-            writer.WriteEndArray();
-            writer.WriteEndObject();
+            //writer.WriteEndArray();
+            //writer.WriteEndObject();
 
             Console.WriteLine(" mea");
         }
