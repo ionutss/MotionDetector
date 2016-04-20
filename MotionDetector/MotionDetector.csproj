@@ -55,7 +55,9 @@
   <ItemGroup>
     <Compile Include="AccAction.cs" />
     <Compile Include="Activity1.cs" />
+    <Compile Include="AtomicAction.cs" />
     <Compile Include="CircularBuffer.cs" />
+    <Compile Include="ElementaryAction.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

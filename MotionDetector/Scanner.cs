@@ -27,6 +27,7 @@ namespace MotionDetector
     {
         private static Scanner instance;
         CircularBuffer CircularBuffer = new CircularBuffer(2000);
+        AtomicAction AtomicAction = AtomicAction.Instance;
 
         static string path = global::Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
         static string AppPath = System.IO.Path.Combine(path.ToString(), "results.txt");
@@ -67,17 +68,32 @@ namespace MotionDetector
                     FilterSignal(ProcessWindow.Y, ProcessWindow.Y);
                     FilterSignal(ProcessWindow.Z, ProcessWindow.Z);
 
+
                     result = ProcessBuffer(ProcessWindow.Y, "X");
 
-
-                    try
+                    if(result == "Standing" && IsGravityOnAxis(ProcessWindow.Z))
                     {
-                        using (var streamWriter = new StreamWriter(AppPath, true))
-                        {
-                            streamWriter.WriteLine(result + " " + System.DateTime.Now.Second);
-                        }
+                        result = "Sitting";
                     }
-                    catch { }
+
+                    var atomicActionResult = "";
+                    AtomicAction.Increment(result);
+                    if(AtomicAction.Counter == 10)
+                    {
+                        atomicActionResult = AtomicAction.GetAtomicAction();
+                        AtomicAction.Reset();
+
+                        try
+                        {
+                            using (var streamWriter = new StreamWriter(AppPath, true))
+                            {
+                                streamWriter.WriteLine(atomicActionResult + " " + System.DateTime.Now.Second);
+                            }
+                        }
+                        catch { }
+                    }
+
+                   
 
                     //ProcessBuffer(ProcessWindow.Y, "Y");
                     //Thread.Sleep(500);
@@ -204,7 +220,7 @@ namespace MotionDetector
                 }
                 else if (direction == "Y")
                 {
-                    fact.Laying++;
+                    fact.Sitting++;
                 }
             }
             else
@@ -229,7 +245,7 @@ namespace MotionDetector
                 }
                 else
                 {
-                    fact.Nonperiodic++;
+                    fact.Nonuniform++;
                 }
 
             }
@@ -254,7 +270,6 @@ namespace MotionDetector
         {
             if (list.Count > 2)
             {
-                Console.WriteLine("periodic...");
                 var lastWidth = list[0].ValuesArray.Length + list[1].ValuesArray.Length;
 
                 for (var i = 0; i < list.Count - 2; i = i + 2)
@@ -265,7 +280,6 @@ namespace MotionDetector
                     {
                         return false;
                     }
-                    Console.WriteLine("periodic...zzzz");
                 }
 
                 return true;
@@ -315,6 +329,18 @@ namespace MotionDetector
                 output[i] = (input[i - 6] + input[i - 5] + input[i - 4] + input[i - 3] + input[i - 2] + input[i - 1] + input[i] + input[i + 1] + input[i + 2] + input[i + 3] + input[i + 4] + input[i + 5] + input[i + 6]) / 13;
             }
 
+        }
+
+        public static bool IsGravityOnAxis(double[] input)
+        {
+            for(var i = 0; i<input.Length; i++)
+            {
+                if(input[i] < 0.9)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

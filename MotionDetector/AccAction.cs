@@ -17,10 +17,10 @@ namespace MotionDetector
         public double Dynamic;
         public double Static;
         public double Periodic;
-        public double Nonperiodic;
+        public double Nonuniform;
         public double Walking;
         public double Running;
-        public double Laying;
+        public double Sitting;
         public double Standing;
 
         public AccAction()
@@ -28,10 +28,10 @@ namespace MotionDetector
             Dynamic = 0;
             Static = 0;
             Periodic = 0;
-            Nonperiodic = 0;
+            Nonuniform = 0;
             Walking = 0;
             Running = 0;
-            Laying = 0;
+            Sitting = 0;
             Standing = 0;
         }
 
@@ -44,8 +44,8 @@ namespace MotionDetector
         {
             if ((Dynamic / total(Dynamic, Static)) > (Static / total(Dynamic, Static)))
             {
-                double periodicR = (Periodic / total(Periodic, Nonperiodic));
-                double nonperiodicR = (Nonperiodic / total(Periodic, Nonperiodic));
+                double periodicR = (Periodic / total(Periodic, Nonuniform));
+                double nonperiodicR = (Nonuniform / total(Periodic, Nonuniform));
                 if (periodicR > nonperiodicR && periodicR > 0.5)
                 {
                     double walkingR = (Walking / total(Walking, Running));
@@ -63,18 +63,18 @@ namespace MotionDetector
                 }
                 else if (nonperiodicR > 0.5)
                 {
-                    return "Nonperiodic"; //should give a name
+                    return "Nonuniform"; //should give a name
                 }
             }
             else
             {
-                if ((Standing / total(Standing, Laying)) > (Laying / (total(Standing, Laying))))
+                if ((Standing / total(Standing, Sitting)) > (Sitting / (total(Standing, Sitting))))
                 {
                     return "Standing";
                 }
                 else
                 {
-                    return "Laying";
+                    return "Sitting";
                 }
             }
 

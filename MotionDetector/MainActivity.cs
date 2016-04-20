@@ -71,14 +71,14 @@ namespace MotionDetector
                                             _sensorManager.GetDefaultSensor(SensorType.Accelerometer),
                                             SensorDelay.Fastest);
 
-            Console.WriteLine("fuck");
+            Console.WriteLine("Resume");
         }
 
         protected override void OnPause()
         {
             base.OnPause();
-            _sensorManager.UnregisterListener(this);
-
+            //_sensorManager.UnregisterListener(this);
+            Console.WriteLine("Pause");
 
         }
 
@@ -88,7 +88,7 @@ namespace MotionDetector
             //writer.WriteEndArray();
             //writer.WriteEndObject();
 
-            Console.WriteLine(" mea");
+            Console.WriteLine(" Stop");
         }
     }
 }
