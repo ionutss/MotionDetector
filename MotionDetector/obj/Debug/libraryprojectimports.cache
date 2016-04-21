@@ -1,8 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
   <Jars></Jars>
-  <ResolvedResourceDirectories />
-  <ResolvedAssetDirectories />
+  <ResolvedResourceDirectories>
+    <ResolvedResourceDirectory>C:\Licenta\MotionDetector\MotionDetector\obj\Debug\__library_projects__\ModernHttpClient\library_project_imports\res</ResolvedResourceDirectory>
+  </ResolvedResourceDirectories>
+  <ResolvedAssetDirectories>
+    <ResolvedAssetDirectory>C:\Licenta\MotionDetector\MotionDetector\obj\Debug\__library_projects__\ModernHttpClient\library_project_imports\assets</ResolvedAssetDirectory>
+  </ResolvedAssetDirectories>
   <ResolvedEnvironmentFiles />
-  <ResolvedResourceDirectoryStamps />
+  <ResolvedResourceDirectoryStamps>
+    <ResolvedResourceDirectoryStamp>C:\Licenta\MotionDetector\MotionDetector\obj\Debug\__library_projects__\ModernHttpClient.stamp</ResolvedResourceDirectoryStamp>
+  </ResolvedResourceDirectoryStamps>
 </Paths>

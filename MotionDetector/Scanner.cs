@@ -13,6 +13,10 @@ using Newtonsoft.Json.Linq;
 
 using Newtonsoft.Json;
 using System.IO;
+using Android.Net.Http;
+using ModernHttpClient;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace MotionDetector
 {
@@ -91,6 +95,10 @@ namespace MotionDetector
                             }
                         }
                         catch { }
+
+                        RequestPostAsync(atomicActionResult);
+
+
                     }
 
                    
@@ -341,6 +349,49 @@ namespace MotionDetector
                 }
             }
             return true;
+        }
+
+
+        public static async Task<string> RequestPostAsync(string AtomicActivity)
+        {
+            var request = HttpWebRequest.Create(string.Format(@"http://192.168.0.101:3591/api/mobile"));
+            request.ContentType = "application/json";
+            request.Method = "POST";
+            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+            {
+                string json = "{\"activity\":\"" + AtomicActivity + "\"," +
+                              "\"timestamp\":\"" + System.DateTime.Now + "\"}";
+                string json1 = JsonConvert.SerializeObject(json);
+
+                streamWriter.Write(json1);
+
+            }
+            var response = (HttpWebResponse)request.GetResponse();
+
+            // Build the Task
+            // There are 2 ways to use await.  Here is the long way.
+            //Task<WebResponse> getResponseTask = req.GetResponseAsync();
+
+            //using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            //{
+            //    if (response.StatusCode != HttpStatusCode.OK)
+            //        Console.Out.WriteLine("Error fetching data. Server returned status code: {0}", response.StatusCode);
+            //    using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+            //    {
+            //        var content = reader.ReadToEnd();
+            //        if (string.IsNullOrWhiteSpace(content))
+            //        {
+            //            Console.Out.WriteLine("Response contained empty body...");
+            //        }
+            //        else {
+            //            Console.Out.WriteLine("Response Body: \r\n {0}", content);
+            //        }
+
+            //       // Assert.NotNull(content);
+            //    }
+            //}
+
+            return "";
         }
     }
 }

@@ -1,10 +1,13 @@
 C:\Licenta\MotionDetector\MotionDetector\obj\Debug\assemblies\MotionDetector.dll
+C:\Licenta\MotionDetector\MotionDetector\obj\Debug\assemblies\ModernHttpClient.dll
 C:\Licenta\MotionDetector\MotionDetector\obj\Debug\assemblies\Mono.Android.dll
 C:\Licenta\MotionDetector\MotionDetector\obj\Debug\assemblies\mscorlib.dll
 C:\Licenta\MotionDetector\MotionDetector\obj\Debug\assemblies\Newtonsoft.Json.dll
+C:\Licenta\MotionDetector\MotionDetector\obj\Debug\assemblies\OkHttp.dll
 C:\Licenta\MotionDetector\MotionDetector\obj\Debug\assemblies\System.Core.dll
 C:\Licenta\MotionDetector\MotionDetector\obj\Debug\assemblies\System.dll
 C:\Licenta\MotionDetector\MotionDetector\obj\Debug\assemblies\System.Xml.dll
 C:\Licenta\MotionDetector\MotionDetector\obj\Debug\assemblies\System.Xml.Linq.dll
+C:\Licenta\MotionDetector\MotionDetector\obj\Debug\assemblies\System.Net.Http.dll
 C:\Licenta\MotionDetector\MotionDetector\obj\Debug\assemblies\System.Runtime.Serialization.dll
 C:\Licenta\MotionDetector\MotionDetector\obj\Debug\assemblies\System.ServiceModel.Internals.dll

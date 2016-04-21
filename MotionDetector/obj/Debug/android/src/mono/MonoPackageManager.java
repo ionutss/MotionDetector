@@ -80,7 +80,9 @@ public class MonoPackageManager {
 class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		"MotionDetector.dll",
+		"ModernHttpClient.dll",
 		"Newtonsoft.Json.dll",
+		"OkHttp.dll",
 		"System.ServiceModel.Internals.dll",
 	};
 	public static final String[] Dependencies = new String[]{
