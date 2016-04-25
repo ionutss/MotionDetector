@@ -97,6 +97,7 @@ namespace MotionDetector
                         catch { }
 
                         RequestPostAsync(atomicActionResult);
+                        //test();
 
 
                     }
@@ -350,9 +351,19 @@ namespace MotionDetector
             }
             return true;
         }
+        
+        public static async void test()
+        {
+            var x = await sum(3, 4);
+            Console.WriteLine(x);
+        }
 
+        public static async Task<int> sum(int x, int y)
+        {
+            return x + y;
+        }
 
-        public static async Task<string> RequestPostAsync(string AtomicActivity)
+        public static async void RequestPostAsync(string AtomicActivity)
         {
             var request = HttpWebRequest.Create(string.Format(@"http://192.168.0.101:3591/api/mobile"));
             request.ContentType = "application/json";
@@ -366,7 +377,17 @@ namespace MotionDetector
                 streamWriter.Write(json1);
 
             }
-            var response = (HttpWebResponse)request.GetResponse();
+            var content = new MemoryStream();
+
+            using (WebResponse response = await request.GetResponseAsync())
+            {
+                using (Stream responseStream = response.GetResponseStream())
+                {
+                    await responseStream.CopyToAsync(content);
+                }
+            }
+            Console.WriteLine(content.ToArray());
+                //var response = (HttpWebResponse)request.GetResponse();
 
             // Build the Task
             // There are 2 ways to use await.  Here is the long way.
@@ -391,7 +412,7 @@ namespace MotionDetector
             //    }
             //}
 
-            return "";
+            
         }
     }
 }
