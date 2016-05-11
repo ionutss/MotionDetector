@@ -8,6 +8,7 @@ using Android.OS;
 using Android.Hardware;
 using System.IO;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace MotionDetector
 {
@@ -24,6 +25,8 @@ namespace MotionDetector
         StreamWriter sw = null;
         JsonWriter writer = null;
         Scanner scanner = Scanner.Instance;
+
+        Button button1, button2, button3, button4, button5;
 
 
         public void OnAccuracyChanged(Sensor sensor, [GeneratedEnum] SensorStatus accuracy)
@@ -60,6 +63,39 @@ namespace MotionDetector
             //writer.WritePropertyName("acc_x");
             //writer.WriteStartArray();
 
+            button1 = FindViewById<Button>(Resource.Id.button1);
+            button2 = FindViewById<Button>(Resource.Id.button2);
+            button3 = FindViewById<Button>(Resource.Id.button3);
+            button4 = FindViewById<Button>(Resource.Id.button4);
+            button5 = FindViewById<Button>(Resource.Id.button5);
+            
+
+            button1.Click += (object sender, EventArgs e) =>
+            {
+                RequestPostAsync("Bedroom");
+            };
+
+            button2.Click += (object sender, EventArgs e) =>
+            {
+                RequestPostAsync("Bathroom");
+            };
+
+            button3.Click += (object sender, EventArgs e) =>
+            {
+                RequestPostAsync("Kitchen");
+            };
+
+            button4.Click += (object sender, EventArgs e) =>
+            {
+                RequestPostAsync("Hall");
+            };
+
+            button5.Click += (object sender, EventArgs e) =>
+            {
+                RequestPostAsync("Outside");
+            };
+
+
             scanner.Execute();
 
         }
@@ -89,6 +125,39 @@ namespace MotionDetector
             //writer.WriteEndObject();
 
             Console.WriteLine(" Stop");
+        }
+
+       
+        
+
+        public static async void RequestPostAsync(string BoardSensor)
+        {
+            var ResultToSend = new Result(BoardSensor, DateTime.Now);
+            var payload = JsonConvert.SerializeObject(ResultToSend, Formatting.Indented);
+
+            var request = System.Net.HttpWebRequest.Create(string.Format(@"http://192.168.0.101:3591/api/board"));
+            request.ContentType = "application/json";
+            request.Method = "POST";
+            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+            {
+                //string json = "{\"activity\":\"" + AtomicActivity + "\"," +
+                //              "\"timestamp\":\"" + System.DateTime.Now + "\"}";
+                //string json1 = JsonConvert.SerializeObject(json);
+
+                streamWriter.Write(payload);
+
+            }
+            var content = new MemoryStream();
+
+            using (WebResponse response = await request.GetResponseAsync())
+            {
+                using (Stream responseStream = response.GetResponseStream())
+                {
+                    await responseStream.CopyToAsync(content);
+                }
+            }
+            Console.WriteLine(content.ToArray());
+
         }
     }
 }

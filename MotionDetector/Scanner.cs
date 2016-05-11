@@ -27,6 +27,18 @@ namespace MotionDetector
         public double[] Z;
     }
 
+    class Result
+    {
+        public string Name;
+        public DateTime Timestamp;
+
+        public Result(string name, DateTime time)
+        {
+            this.Name = name;
+            this.Timestamp = time;
+        }
+    }
+
     public class Scanner
     {
         private static Scanner instance;
@@ -97,14 +109,7 @@ namespace MotionDetector
                         catch { }
 
                         RequestPostAsync(atomicActionResult);
-                        //test();
-
-
                     }
-
-                   
-
-                    //ProcessBuffer(ProcessWindow.Y, "Y");
                     //Thread.Sleep(500);
                     CircularBuffer.IncrementReadOffset(ProccessWindowSize);
                 }
@@ -352,29 +357,22 @@ namespace MotionDetector
             return true;
         }
         
-        public static async void test()
-        {
-            var x = await sum(3, 4);
-            Console.WriteLine(x);
-        }
-
-        public static async Task<int> sum(int x, int y)
-        {
-            return x + y;
-        }
 
         public static async void RequestPostAsync(string AtomicActivity)
         {
+            var ResultToSend = new Result(AtomicActivity, DateTime.Now);
+            var payload = JsonConvert.SerializeObject(ResultToSend, Formatting.Indented);
+
             var request = HttpWebRequest.Create(string.Format(@"http://192.168.0.101:3591/api/mobile"));
             request.ContentType = "application/json";
             request.Method = "POST";
             using (var streamWriter = new StreamWriter(request.GetRequestStream()))
             {
-                string json = "{\"activity\":\"" + AtomicActivity + "\"," +
-                              "\"timestamp\":\"" + System.DateTime.Now + "\"}";
-                string json1 = JsonConvert.SerializeObject(json);
+                //string json = "{\"activity\":\"" + AtomicActivity + "\"," +
+                //              "\"timestamp\":\"" + System.DateTime.Now + "\"}";
+                //string json1 = JsonConvert.SerializeObject(json);
 
-                streamWriter.Write(json1);
+                streamWriter.Write(payload);
 
             }
             var content = new MemoryStream();
@@ -387,31 +385,6 @@ namespace MotionDetector
                 }
             }
             Console.WriteLine(content.ToArray());
-                //var response = (HttpWebResponse)request.GetResponse();
-
-            // Build the Task
-            // There are 2 ways to use await.  Here is the long way.
-            //Task<WebResponse> getResponseTask = req.GetResponseAsync();
-
-            //using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-            //{
-            //    if (response.StatusCode != HttpStatusCode.OK)
-            //        Console.Out.WriteLine("Error fetching data. Server returned status code: {0}", response.StatusCode);
-            //    using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-            //    {
-            //        var content = reader.ReadToEnd();
-            //        if (string.IsNullOrWhiteSpace(content))
-            //        {
-            //            Console.Out.WriteLine("Response contained empty body...");
-            //        }
-            //        else {
-            //            Console.Out.WriteLine("Response Body: \r\n {0}", content);
-            //        }
-
-            //       // Assert.NotNull(content);
-            //    }
-            //}
-
             
         }
     }
