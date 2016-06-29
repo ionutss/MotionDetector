@@ -72,22 +72,22 @@ namespace MotionDetector
 
             button1.Click += (object sender, EventArgs e) =>
             {
-                RequestPostAsync("Bedroom");
+                RequestPostAsync("3");
             };
 
             button2.Click += (object sender, EventArgs e) =>
             {
-                RequestPostAsync("Bathroom");
+                RequestPostAsync("4");
             };
 
             button3.Click += (object sender, EventArgs e) =>
             {
-                RequestPostAsync("Kitchen");
+                RequestPostAsync("2");
             };
 
             button4.Click += (object sender, EventArgs e) =>
             {
-                RequestPostAsync("Hall");
+                RequestPostAsync("1");
             };
 
             button5.Click += (object sender, EventArgs e) =>
@@ -140,11 +140,10 @@ namespace MotionDetector
             request.Method = "POST";
             using (var streamWriter = new StreamWriter(request.GetRequestStream()))
             {
-                //string json = "{\"activity\":\"" + AtomicActivity + "\"," +
-                //              "\"timestamp\":\"" + System.DateTime.Now + "\"}";
-                //string json1 = JsonConvert.SerializeObject(json);
+                var definition = new { type = "room", room = BoardSensor, date = DateTime.Now };
+                var json1 = JsonConvert.SerializeObject(definition, Formatting.Indented);
 
-                streamWriter.Write(payload);
+                streamWriter.Write(json1);
 
             }
             var content = new MemoryStream();
